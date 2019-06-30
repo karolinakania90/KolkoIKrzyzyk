@@ -200,7 +200,15 @@ namespace KolkoIKrzyzyk
                     button3.BackColor = Color.Red;
                     ZmienStanMacierzy(false);
                 }
-                
+
+                if (wygrany.Poczatkowe.X == 1 && wygrany.Poczatkowe.Y == 0
+                    && wygrany.Koncowe.X == 1 && wygrany.Koncowe.Y == 2)
+                {
+                    button4.BackColor = Color.Red;
+                    button5.BackColor = Color.Red;
+                    button6.BackColor = Color.Red;
+                    ZmienStanMacierzy(false);
+                }
             }
         }
     }

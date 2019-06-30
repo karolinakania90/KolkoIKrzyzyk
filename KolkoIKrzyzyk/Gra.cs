@@ -88,6 +88,25 @@ namespace KolkoIKrzyzyk
                     }
                 };
             }
+            if (macierzGry[1, 0] == macierzGry[1, 1]
+                  && macierzGry[1, 1] == macierzGry[1, 2]
+                  && macierzGry[1, 0] == macierzGry[1, 2])
+            {
+                return new Wygrana()
+                {
+                    Symbol = macierzGry[1, 0],
+                    Poczatkowe = new Pole()
+                    {
+                        X = 1,
+                        Y = 0
+                    },
+                    Koncowe = new Pole()
+                    {
+                        X = 1,
+                        Y = 2
+                    }
+                };
+            }
 
 
             return null;

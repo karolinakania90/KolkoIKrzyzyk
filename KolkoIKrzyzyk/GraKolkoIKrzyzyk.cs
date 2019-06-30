@@ -12,8 +12,9 @@ namespace KolkoIKrzyzyk
 {
     public partial class GraKolkoIKrzyzyk : Form
     {
-
         private Gra gra;
+        private bool koniecGry = false;
+        private Color domyslnyKolor;
 
         public GraKolkoIKrzyzyk()
         {
@@ -22,6 +23,7 @@ namespace KolkoIKrzyzyk
 
             ZmienStanMacierzy(false);
         }
+
 
         private void ZmienStanMacierzy(bool stan)
         {
@@ -38,16 +40,69 @@ namespace KolkoIKrzyzyk
 
         private void GraKolkoIKrzyzyk_Load(object sender, EventArgs e)
         {
+            domyslnyKolor = button1.BackColor;
         }
 
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            statusLabel.Text = "Trwa rozgrywka!";
+            if (koniecGry == false)
+            {
+                statusLabel.Text = "Trwa rozgrywka!";
 
-            startButton.Enabled = false;
-            ZmienStanMacierzy(true);
+                startButton.Enabled = false;
+                ZmienStanMacierzy(true);
+            }
+            else
+            {
+                WyzerujGre();
 
+            }
+        }
+
+        private void WyzerujGre()
+        {
+            ZmienStanMacierzy(false);
+            gra = new Gra();
+            koniecGry = false;
+            startButton.Enabled = true;
+            startButton.Text = "START";
+
+            button1.BackColor = domyslnyKolor;
+            button1.UseVisualStyleBackColor = true;
+            button1.Text = "";
+
+            button2.BackColor = domyslnyKolor;
+            button2.Text = "";
+            button2.UseVisualStyleBackColor = true;
+
+            button3.BackColor = domyslnyKolor;
+            button3.Text = "";
+            button3.UseVisualStyleBackColor = true;
+
+            button4.BackColor = domyslnyKolor;
+            button4.Text = "";
+            button4.UseVisualStyleBackColor = true;
+
+            button5.BackColor = domyslnyKolor;
+            button5.Text = "";
+            button5.UseVisualStyleBackColor = true;
+
+            button6.BackColor = domyslnyKolor;
+            button6.Text = "";
+            button6.UseVisualStyleBackColor = true;
+
+            button7.BackColor = domyslnyKolor;
+            button7.Text = "";
+            button7.UseVisualStyleBackColor = true;
+
+            button8.BackColor = domyslnyKolor;
+            button8.Text = "";
+            button8.UseVisualStyleBackColor = true;
+
+            button9.BackColor = domyslnyKolor;
+            button9.Text = "";
+            button9.UseVisualStyleBackColor = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -190,7 +245,7 @@ namespace KolkoIKrzyzyk
             var wygrany = gra.SprawdzKtoWygral();
             if (wygrany != null)
             {
-                statusLabel.Text = wygrany.Symbol;
+                ZakonczGre(wygrany);
 
                 if (wygrany.Poczatkowe.X == 0 && wygrany.Poczatkowe.Y == 0
                     && wygrany.Koncowe.X == 0 && wygrany.Koncowe.Y == 2)
@@ -209,7 +264,24 @@ namespace KolkoIKrzyzyk
                     button6.BackColor = Color.Red;
                     ZmienStanMacierzy(false);
                 }
+                if (wygrany.Poczatkowe.X == 2 && wygrany.Poczatkowe.Y == 0
+                     && wygrany.Koncowe.X == 2 && wygrany.Koncowe.Y == 2)
+                {
+                    button7.BackColor = Color.Red;
+                    button8.BackColor = Color.Red;
+                    button9.BackColor = Color.Red;
+                    ZmienStanMacierzy(false);
+                }
             }
+        }
+
+        private void ZakonczGre(Wygrana wygrany)
+        {
+            statusLabel.Text = "Wygrał " + wygrany.Symbol;
+            startButton.Text = "Nowa gra";
+            startButton.Enabled = true;
+            koniecGry = true;
+
         }
     }
 }

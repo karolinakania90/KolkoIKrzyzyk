@@ -69,7 +69,8 @@ namespace KolkoIKrzyzyk
 
         public Wygrana SprawdzKtoWygral()
         {
-            if (macierzGry[0, 0] == macierzGry[0, 1]
+            if (macierzGry[0, 0] != null &&
+                macierzGry[0, 0] == macierzGry[0, 1]
                 && macierzGry[0, 1] == macierzGry[0, 2]
                 && macierzGry[0, 0] == macierzGry[0, 2])
             {
@@ -88,7 +89,8 @@ namespace KolkoIKrzyzyk
                     }
                 };
             }
-            if (macierzGry[1, 0] == macierzGry[1, 1]
+            else if (macierzGry[1, 0] != null &&
+                  macierzGry[1, 0] == macierzGry[1, 1]
                   && macierzGry[1, 1] == macierzGry[1, 2]
                   && macierzGry[1, 0] == macierzGry[1, 2])
             {
@@ -103,6 +105,26 @@ namespace KolkoIKrzyzyk
                     Koncowe = new Pole()
                     {
                         X = 1,
+                        Y = 2
+                    }
+                };
+            }
+            else if (macierzGry[2, 0] != null &&
+                    macierzGry[2, 0] == macierzGry[2, 1]
+                 && macierzGry[2, 1] == macierzGry[2, 2]
+                 && macierzGry[2, 0] == macierzGry[2, 2])
+            {
+                return new Wygrana()
+                {
+                    Symbol = macierzGry[2, 0],
+                    Poczatkowe = new Pole()
+                    {
+                        X = 2,
+                        Y = 0
+                    },
+                    Koncowe = new Pole()
+                    {
+                        X = 2,
                         Y = 2
                     }
                 };
